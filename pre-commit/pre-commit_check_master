@@ -1,7 +1,7 @@
 #!/bin/bash
 
 
-branch=$(git rev-parse --symbolic --abbrev-ref $refname)
+branch=$(git rev-parse --symbolic --abbrev-ref HEAD)
 
 if [[ "master" == "$branch" || "devel" == "$branch" ]]; then
 	echo "On branch $branch. Add --no-verify argument to commit to this branch."
