@@ -45,6 +45,7 @@ Thumbs.db
 *.iso
 *.jar
 *.rar
+*.swp
 *.tar
 *.zip
 
