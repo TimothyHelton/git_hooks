@@ -1,0 +1,12 @@
+#!/bin/bash
+
+
+while read oldrev newrev refname
+do
+  branch=$(git rev-parse --symbolic --abbrev-ref $refname)
+  if [[ "master" == "$branch" || "devel" == "$branch" ]]; then
+    echo "On branch $branch. Add --no-verify argument to commit to this branch."
+    exit 1
+  fi
+done
+

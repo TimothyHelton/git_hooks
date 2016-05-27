@@ -1,4 +1,4 @@
-!/bin/bash
+#!/bin/bash
 
 ## Archive Destination
 archive_dir="enter_destination_here"
