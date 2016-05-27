@@ -12,11 +12,11 @@ venv="/enter_path_to_virtual_env/bin/activate"
 
 while read oldrev newrev refname
 do
-  branch=$(git rev-parse --symbolic --abbrev-ref $refname)
-  if [ "master" == "$branch" ]; then
-    git archive --format=tar.gz master | tar -xz -C $archive_dir
-    cd $archive_dir/$docs_dir
-    source $venv
-    make html
-  fi
+	branch=$(git rev-parse --symbolic --abbrev-ref $refname)
+	if [ "master" == "$branch" ]; then
+		git archive --format=tar.gz master | tar -xz -C $archive_dir
+		cd $archive_dir/$docs_dir
+		source $venv
+		make html
+	fi
 done

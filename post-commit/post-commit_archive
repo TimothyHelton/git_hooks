@@ -1,0 +1,10 @@
+#!/bin/bash
+
+## Archive Destination
+archive_dir="enter_destination_here"
+
+
+branch=$(git rev-parse --symbolic --abbrev-ref HEAD)
+if [ "master" == "$branch" ]; then
+	git archive --format=tar.gz master | tar -xz -C $archive_dir
+fi
