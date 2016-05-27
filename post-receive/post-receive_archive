@@ -1,7 +1,8 @@
 !/bin/bash
 
-## Define archive destination
+## Archive Destination
 archive_dir="enter_destination_here"
+
 
 while read oldrev newrev refname
 do

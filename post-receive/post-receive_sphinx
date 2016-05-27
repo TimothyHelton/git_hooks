@@ -1,0 +1,22 @@
+!/bin/bash
+
+## Archive Destination
+archive_dir="enter_destination_here"
+
+## Documents Directory
+docs_dir="enter_docs_dir_here"
+
+## Path to activate Python virtual environment with the Sphinx package
+venv="/enter_path_to_virtual_env/bin/activate"
+
+
+while read oldrev newrev refname
+do
+  branch=$(git rev-parse --symbolic --abbrev-ref $refname)
+  if [ "master" == "$branch" ]; then
+    git archive --format=tar.gz master | tar -xz -C $archive_dir
+    cd $archive_dir/$docs_dir
+    source $venv
+    make html
+  fi
+done
