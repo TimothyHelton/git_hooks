@@ -1,0 +1,12 @@
+!/bin/bash
+
+## Define archive destination
+archive_dir="enter_destination_here"
+
+while read oldrev newrev refname
+do
+  branch=$(git rev-parse --symbolic --abbrev-ref $refname)
+  if [ "master" == "$branch" ]; then
+    git archive --format=tar.gz master | tar -xz -C $archive_dir
+  fi
+done
