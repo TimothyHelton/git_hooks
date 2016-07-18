@@ -1,0 +1,34 @@
+#!/bin/bash
+
+
+## Variables
+branch=$(git rev-parse --symbolic --abbrev-ref HEAD)
+docs_dir="enter_docs_dir_here"
+
+## Path to activate Python virtual environment with the Sphinx package
+venv="enter_venv_path_here/bin/activate"
+
+
+if [[ "master" == "$branch" || "devel" == "$branch" ]]; then
+    echo "On branch $branch. Add --no-verify argument to commit to this branch."
+    stop_commit=1
+
+    cd $docs_dir
+    source $venv
+    make html > doc.log
+
+    if [[ `grep -x "build succeeded." doc.log` != "build succeeded." ]]; then
+        echo "Sphinx documentation build did not complete successfully."
+        stop_commit=1
+    else
+        echo "Sphinx documentation build succeeded."
+    fi
+
+    rm doc.log
+fi
+
+if [[ "$stop_commit" == "1" ]]; then
+    exit 1
+fi
+
+exit 0
